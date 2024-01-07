@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OpenCardComponent } from './open-card.component';
+import { OpenCardComponent } from './openCard.component';
 
 describe('OpenCardComponent', () => {
   let component: OpenCardComponent;

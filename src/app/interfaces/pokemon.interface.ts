@@ -3,6 +3,6 @@ export interface Pokemon {
     name: string;
     img: string;
     type: string;
-    color: string;
+    height: string;
     abilities: string[];
   }

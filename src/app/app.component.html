@@ -1,6 +1,14 @@
   <h1>Pokedex</h1>
+
+  <open-card 
+    *ngIf="selectedPokemon!==null" 
+    [pokemon]="selectedPokemon" 
+    [closeCard]="closeCard">
+  </open-card>
+  
   <div class="pokemons-list">
-    <div *ngFor="let pokemon of pokemons">
+    <div *ngFor="let pokemon of pokemons" (click)="selectCard(pokemon)">
       <pokemon-card [pokemon]="pokemon"></pokemon-card>
     </div>
   </div>
+

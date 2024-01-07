@@ -5,14 +5,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CardComponent } from '../components/card/card.component';
-import { OpenCardComponent } from '../components/open-card/open-card.component';
+import { CardComponent } from './components/Card/card.component';
+import { OpenCardComponent } from './components/OpenCard/openCard.component';
+import { SearchBarComponent } from './components/SearchBar/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
-    OpenCardComponent
+    OpenCardComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,

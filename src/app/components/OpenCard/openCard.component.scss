@@ -1,0 +1,45 @@
+.open-card {
+    display: flex;
+    flex-direction: column; // Stack children vertically
+    position: fixed; // Will stay fixed relative to the viewport
+    // ensure it remains centered both horizontally and vertically even when you scroll:
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Courier New', Courier, monospace;
+    width: max-content;
+    height: max-content;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #dedede;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    
+
+    button {
+        width: fit-content;
+        height: fit-content;;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+        background-color: #f2f2f2;
+        border: 1px solid #423434;
+      }
+  
+    .pokemon-image {
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+  
+    .pokemon-details {
+      text-align: center;    // Center text content
+  
+      h2 {
+        font-size: 1.5em;
+        margin-bottom: 8px;
+      }
+    }
+  }
