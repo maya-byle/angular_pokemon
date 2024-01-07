@@ -9,7 +9,8 @@
   <open-card 
     *ngIf="selectedPokemon" 
     [pokemon]="selectedPokemon" 
-    [closeCard]="closeCard">
+    [closeCard]="closeCard"
+    [(selectedPokemon)]="selectedPokemon">
   </open-card>
   
   <div class="pokemons-list">

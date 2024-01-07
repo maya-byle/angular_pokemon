@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pokemon } from '../../interfaces/pokemon.interface';
 
 @Component({
@@ -8,9 +8,9 @@ import { Pokemon } from '../../interfaces/pokemon.interface';
 })
 export class OpenCardComponent {
   @Input() pokemon: Pokemon
-  @Input() closeCard: () => void;
+  @Output() selectedPokemonChange = new EventEmitter<Pokemon>();
 
-  onCloseCard() {
-    this.closeCard();
+  onCloseCard() { 
+    this.selectedPokemonChange.emit(null);
   }
 }

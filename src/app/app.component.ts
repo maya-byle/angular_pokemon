@@ -59,9 +59,4 @@ export class AppComponent implements OnInit {
     this.selectedPokemon = pokemon;
   }
 
-  closeCard() {  //  Not working!!!!
-    this.selectedPokemon = null;
-    console.log(this.selectedPokemon);
-  }
-
 }
