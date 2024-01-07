@@ -2,10 +2,13 @@
     display: flex;
     flex-direction: column; // Stack children vertically
     position: fixed; // Will stay fixed relative to the viewport
+    z-index: 10; // A value that is higher than the z-index of the cards-list
+
     // ensure it remains centered both horizontally and vertically even when you scroll:
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     font-family: 'Courier New', Courier, monospace;
     width: max-content;
     height: max-content;
