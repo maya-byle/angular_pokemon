@@ -1,0 +1,12 @@
+.search-bar {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+  
+    input, button {
+        font-family: 'Courier New', Courier, monospace;
+        border-color: rgb(111, 111, 111);
+        border-radius: 5px;
+    }
+}

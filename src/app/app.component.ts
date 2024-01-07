@@ -5,19 +5,21 @@ import { PokemonDataService } from './service/pokemon-data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   pokemons: Pokemon[] = [];
   selectedPokemon: Pokemon = null;
+  filteredPokemonsList: Pokemon[] = [];
+  selectedFilter: string = "name"; 
 
-  constructor( private PokemonDataService: PokemonDataService ) {}
+  constructor(private PokemonDataService: PokemonDataService) {}
 
   ngOnInit(): void {
     this.getPokemonList();
   }
 
-  getPokemonList(): void {
+  async getPokemonList(): Promise<void> {
     this.PokemonDataService.getPokemonList().subscribe(
       (data: any) => {
         const pokemonsList: { name: string, url: string }[] = data.results;
@@ -44,6 +46,7 @@ export class AppComponent implements OnInit {
           abilities: data.abilities.map((ability: {ability:{name: string, url: string}}) => ability.ability.name),
         };
         this.pokemons.push(newPokemon);
+        this.filteredPokemonsList.push(newPokemon) // At the beginning, the list should contain all the Pokémon.
       },
       (error) => {
         console.error(`Error fetching data for ${pokemon.name}`, error);
@@ -52,11 +55,13 @@ export class AppComponent implements OnInit {
   }
 
   selectCard(pokemon: Pokemon) {
+    console.log(this.pokemons)
     this.selectedPokemon = pokemon;
   }
 
-  closeCard() {
+  closeCard() {  //  Not working!!!!
     this.selectedPokemon = null;
-    console.log(this.selectedPokemon)
+    console.log(this.selectedPokemon);
   }
+
 }
