@@ -1,12 +1,20 @@
 <form class="search-bar">
-    <input type="text" placeholder="Filter by.." (input)="filterResults($event, selectedFilter)">
-    
-    <label>
-        <input type="radio" name="filterType" value="name" [(ngModel)]="selectedFilter" (change)="filterResults($event, selectedFilter)"> Name
-    </label>
-    
-    <label>
-        <input type="radio" name="filterType" value="type" [(ngModel)]="selectedFilter" (change)="filterResults($event, selectedFilter)"> Type
-    </label>  
+    <input
+        type="text"
+        placeholder="Filter by name"
+        class="filter-input"
+        #filterInput
+        (input)="filterResults(filterInput)"
+    />  
+
+    <div class="custom-dropdown">
+        <button type="button" (click)="toggleDropdown()">
+            Type: {{ selectedType }}
+        </button>
+        <ul class="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }">
+            <li *ngFor="let type of types" (click)="onTypeChange(type, filterInput)">
+                <a>{{ type }}</a>
+            </li>
+        </ul>
+    </div>
 </form>
-  

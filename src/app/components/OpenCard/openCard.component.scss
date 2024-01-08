@@ -10,7 +10,7 @@
     transform: translate(-50%, -50%);
 
     font-family: 'Courier New', Courier, monospace;
-    width: max-content;
+    width: 18vw;
     height: max-content;
     border: 1px solid;
     border-radius: 8px;
@@ -38,8 +38,7 @@
     }
   
     .pokemon-details {
-      text-align: center;    // Center text content
-  
+
       h2 {
         font-size: 1.5em;
         margin-bottom: 8px;

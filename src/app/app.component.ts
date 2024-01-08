@@ -11,12 +11,13 @@ export class AppComponent implements OnInit {
   pokemons: Pokemon[] = [];
   selectedPokemon: Pokemon = null;
   filteredPokemonsList: Pokemon[] = [];
-  selectedFilter: string = "name"; 
+  pokemonTypes: Set<string> = new Set<string>();
 
   constructor(private PokemonDataService: PokemonDataService) {}
 
   ngOnInit(): void {
     this.getPokemonList();
+    this.pokemonTypes.add('any');
   }
 
   async getPokemonList(): Promise<void> {
@@ -36,7 +37,6 @@ export class AppComponent implements OnInit {
   getPokemonData(pokemon: {name: string, url: string}): void {
     this.PokemonDataService.getPokemonData(pokemon.url).subscribe(
       (data: any) => {
-        // console.log(data);
         const newPokemon: Pokemon = {
           id: data.id,
           name: data.name,
@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
         };
         this.pokemons.push(newPokemon);
         this.filteredPokemonsList.push(newPokemon) // At the beginning, the list should contain all the Pokémon.
+        this.pokemonTypes.add(newPokemon.type);
       },
       (error) => {
         console.error(`Error fetching data for ${pokemon.name}`, error);
@@ -55,7 +56,7 @@ export class AppComponent implements OnInit {
   }
 
   selectCard(pokemon: Pokemon) {
-    console.log(this.pokemons)
+    console.log(pokemon.name)
     this.selectedPokemon = pokemon;
   }
 

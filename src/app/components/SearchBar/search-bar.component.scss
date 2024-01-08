@@ -1,0 +1,57 @@
+.search-bar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  z-index: 15;
+
+  .filter-input {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+  }
+    
+  .custom-dropdown {
+    position: relative;
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+
+    button {
+      width: 120px;
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f8f9fa;
+      color: #212529;
+      border: 1px solid #ced4da;
+      padding: 5px;
+      cursor: pointer;
+    }
+      
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      width: 120px;
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .dropdown-menu.show {
+      display: block;
+    }
+    
+    .dropdown-menu li {
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+    
+    .dropdown-menu li:hover {
+      background-color: #f8f9fa;
+    }
+  }
+    
+}
+  

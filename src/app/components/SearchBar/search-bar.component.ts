@@ -9,24 +9,35 @@ import { Pokemon } from '../../interfaces/pokemon.interface';
 export class SearchBarComponent {
   @Input() pokemons: Pokemon[] = [];
   @Input() filteredPokemonsList: Pokemon[] = [];
+  @Input('pokemonTypes') types: string[] = [];
   @Output() filteredPokemonsListChange = new EventEmitter<Pokemon[]>();
 
-  selectedFilter: string = "name"; 
+  selectedType: string = "any"; 
+  isDropdownOpen: boolean = false;
 
-  filterResults(event: Event, selectedFilter: string) {
-    const value = (<HTMLInputElement>event.target).value
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  onTypeChange(type: string, inputElement: HTMLInputElement) {
+    this.selectedType = type;
+    this.toggleDropdown();
+    this.filterResults(inputElement);
+  }
+
+  filterResults(inputElement: HTMLInputElement) {
+    const value = inputElement.value;
     console.log(value)
     if (!value || !this.filteredPokemonsList) {
       this.filteredPokemonsList = [...this.pokemons];
-      return;
+      // return;
     }
-    this.filteredPokemonsList = this.pokemons.filter(
-      pokemon => {
-        return selectedFilter === "name" ? 
-          pokemon.name.includes(value.toLowerCase()) :
-          pokemon.type.includes(value.toLowerCase()) 
-      }
-    )
+    this.filteredPokemonsList = this.pokemons.filter(pokemon => {
+      return (
+        (!value || pokemon.name.toLowerCase().includes(value.toLowerCase())) &&
+        (this.selectedType === 'any' || pokemon.type === this.selectedType)
+      );
+    });
     this.filteredPokemonsListChange.emit(this.filteredPokemonsList);
   }
 }

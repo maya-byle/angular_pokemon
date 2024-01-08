@@ -3,13 +3,13 @@
   <search-bar
     [pokemons]="pokemons"
     [(filteredPokemonsList)]="filteredPokemonsList"
+    [pokemonTypes]="pokemonTypes"
   >
   </search-bar>
 
   <open-card 
     *ngIf="selectedPokemon" 
     [pokemon]="selectedPokemon" 
-    [closeCard]="closeCard"
     [(selectedPokemon)]="selectedPokemon">
   </open-card>
   
