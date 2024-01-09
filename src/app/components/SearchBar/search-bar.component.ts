@@ -15,17 +15,17 @@ export class SearchBarComponent {
   selectedType: string = "any"; 
   isDropdownOpen: boolean = false;
 
-  toggleDropdown() {
+  toggleDropdown(): void {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  onTypeChange(type: string, inputElement: HTMLInputElement) {
+  onTypeChange(type: string, inputElement: HTMLInputElement): void {
     this.selectedType = type;
     this.toggleDropdown();
     this.filterResults(inputElement);
   }
 
-  filterResults(inputElement: HTMLInputElement) {
+  filterResults(inputElement: HTMLInputElement): void{
     const value = inputElement.value;
     console.log(value)
     if (!value || !this.filteredPokemonsList) {
