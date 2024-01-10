@@ -5,12 +5,3 @@ h1 {
     font-size: 4em;
     text-shadow: 0 3px 3px rgba(94, 160, 102, 0.449);
 }
-
-.pokemons-list {
-    display: flex;
-    flex-wrap: wrap; // allows the cards to wrap onto the next line when the container is too small
-    justify-content: space-between; 
-    max-width: 80%;
-    gap: 10px;
-    margin: 0 auto; // Center the cards
-}    

@@ -1,20 +1,3 @@
   <h1>Pokédex</h1>
 
-  <search-bar
-    [pokemons]="pokemons"
-    [(filteredPokemonsList)]="filteredPokemonsList"
-    [pokemonTypes]="pokemonTypes"
-  >
-  </search-bar>
-
-  <open-card 
-    *ngIf="selectedPokemon" 
-    [pokemon]="selectedPokemon" 
-    [(selectedPokemon)]="selectedPokemon">
-  </open-card>
-  
-  <div class="pokemons-list">
-    <div *ngFor="let pokemon of filteredPokemonsList" (click)="selectCard(pokemon)">
-      <pokemon-card [pokemon]="pokemon"></pokemon-card>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
