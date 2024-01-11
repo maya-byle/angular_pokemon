@@ -1,21 +1,29 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  authenticatedMail: string = "demo@skills.co.il"
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const user = localStorage.getItem('user');
+    let routePath: any = route.routeConfig.path;
+    const user: string = this.authService.get();
 
-    if (user) {
-      return true;
-    } else {
-      this.router.navigate(['/']);
+    if (routePath === 'cards' && (!user || user !== this.authenticatedMail)) {
+      this.router.navigate(['']);
       return false;
     }
+
+    if(routePath === '' && (user && user === this.authenticatedMail)) {
+      this.router.navigate(['cards']);
+      return false;
+    }
+
+    return true;
   }
 }

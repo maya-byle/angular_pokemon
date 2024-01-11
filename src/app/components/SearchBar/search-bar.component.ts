@@ -27,7 +27,6 @@ export class SearchBarComponent {
 
   filterResults(inputElement: HTMLInputElement): void{
     const value = inputElement.value;
-    console.log(value)
     if (!value || !this.filteredPokemonsList) {
       this.filteredPokemonsList = [...this.pokemons];
       // return;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'login',
@@ -10,14 +11,17 @@ export class LoginComponent {
   email: string = '';
   displayError: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(
+    private authService: AuthService, 
+    private router: Router
+  ) {}
 
   onSubmit() {
     if(this.email !== "demo@skills.co.il") {
       this.displayError = true;
       return;
     }
-    localStorage.setItem('user','demo@skills.co.il')
+    this.authService.add(this.email);
     this.router.navigate(['/cards']);
   }
 }

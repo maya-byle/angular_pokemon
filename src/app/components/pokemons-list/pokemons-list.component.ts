@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../../interfaces/pokemon.interface';
-import { PokemonDataService } from '../../service/pokemon-data.service';
+import { PokemonDataService } from '../../services/pokemon-data.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-pokemons-list',
@@ -16,6 +17,7 @@ export class PokemonsListComponent implements OnInit {
 
   constructor(
     private PokemonDataService: PokemonDataService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -65,7 +67,7 @@ export class PokemonsListComponent implements OnInit {
   }
 
   handleLogout() {
-    localStorage.removeItem('user')
+    this.authService.remove();
     this.router.navigate(['/']);
   }
 }
