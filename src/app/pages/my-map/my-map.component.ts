@@ -7,18 +7,17 @@ import { Loader } from "@googlemaps/js-api-loader"
   styleUrl: './my-map.component.css'
 })
 export class MyMapComponent implements OnInit {
-  moveoAddress: google.maps.LatLng = new google.maps.LatLng(32.064, 34.773);
-  selectedMode: string = 'DRIVING';
+  moveoAddress: {lat: number, lng: number} = { lat: 32.064, lng: 34.773 };
   details: {} = null;
+  selectedMode: string = 'DRIVING';
 
   map: google.maps.Map; 
   autocomplete: google.maps.places.Autocomplete
   directionsService: google.maps.DirectionsService;
   directionsRenderer: google.maps.DirectionsRenderer;
 
-
   ngOnInit(): void {
-    let loader: Loader = new Loader({
+    let loader = new Loader({
       apiKey: "AIzaSyCk24I_i4Ls-XSGEdX3XD-ws3s9xOvpTxE",
       libraries: ['places']
     })
@@ -66,9 +65,10 @@ export class MyMapComponent implements OnInit {
   }
 
   calcRoute() {
-    const selectedMode: string = this.selectedMode;
-    const start: google.maps.LatLng = new google.maps.LatLng(32.146908, 34.837891);
-    var request = {
+    var selectedMode = this.selectedMode;
+    // const start = new google.maps.LatLng(32.146908, 34.837891);
+    const start = { lat:32.146908, lng: 34.837891}
+    const request = {
       origin: start,
       destination: this.moveoAddress,
       travelMode: google.maps.TravelMode[selectedMode],
