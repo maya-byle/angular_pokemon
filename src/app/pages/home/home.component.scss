@@ -1,0 +1,25 @@
+
+.options-container {
+  margin-top: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.options-container a {
+  text-decoration: none;
+  padding: 15px; 
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: #333;
+  background-color: #8a9a90a9; // Set a background color
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Add a subtle box shadow
+  transition: background-color 0.3s ease;
+  font-size: 45px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+  &:hover {
+    background-color: #eee;
+  }
+}

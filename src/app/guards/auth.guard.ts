@@ -15,11 +15,11 @@ export class AuthGuard implements CanActivate {
     const user: string = this.authService.get();
 
     if (routePath === 'cards' && (!user || user !== this.authenticatedMail)) {
-      this.router.navigate(['']);
+      this.router.navigate(['login']);
       return false;
     }
 
-    if(routePath === '' && (user && user === this.authenticatedMail)) {
+    if(routePath === 'login' && (user && user === this.authenticatedMail)) {
       this.router.navigate(['cards']);
       return false;
     }
