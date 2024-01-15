@@ -10,15 +10,19 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './components/Card/card.component';
 import { OpenCardComponent } from './components/OpenCard/openCard.component';
 import { SearchBarComponent } from './components/SearchBar/search-bar.component';
-import { LoginComponent } from './components/Login/login.component';
-import { PokemonsListComponent } from './components/pokemons-list/pokemons-list.component';
+import { LoginComponent } from './pages/Login/login.component';
+import { PokemonsListComponent } from './pages/pokemons-list/pokemons-list.component';
+import { MyMapComponent } from './pages/my-map/my-map.component';
 import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard]  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'cards', component: PokemonsListComponent, canActivate: [AuthGuard] },
-  { path: '**', component: LoginComponent }
+  { path: 'map', component: MyMapComponent },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({
@@ -29,14 +33,16 @@ const routes: Routes = [
     SearchBarComponent,
     LoginComponent,
     PokemonsListComponent,
+    MyMapComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes), 
+    RouterModule.forRoot(routes),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
