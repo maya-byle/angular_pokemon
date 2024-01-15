@@ -17,12 +17,12 @@ import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'cards', component: PokemonsListComponent, canActivate: [AuthGuard] },
   { path: 'map', component: MyMapComponent },
-  { path: '**', component: LoginComponent }
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({
@@ -40,9 +40,9 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes), 
+    RouterModule.forRoot(routes),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

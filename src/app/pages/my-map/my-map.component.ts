@@ -1,73 +1,74 @@
 import { Component, OnInit } from '@angular/core';
-import { Loader } from "@googlemaps/js-api-loader"
-
+import { Loader } from '@googlemaps/js-api-loader';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'my-map',
   templateUrl: './my-map.component.html',
-  styleUrl: './my-map.component.css'
+  styleUrl: './my-map.component.css',
 })
 export class MyMapComponent implements OnInit {
-  moveoAddress: {lat: number, lng: number} = { lat: 32.064, lng: 34.773 };
-  details: {} = null;
+  moveoAddress: { lat: number; lng: number } = { lat: 32.064, lng: 34.773 };
   selectedMode: string = 'DRIVING';
 
-  map: google.maps.Map; 
-  autocomplete: google.maps.places.Autocomplete
+  map: google.maps.Map;
+  autocomplete: google.maps.places.Autocomplete;
   directionsService: google.maps.DirectionsService;
   directionsRenderer: google.maps.DirectionsRenderer;
 
   ngOnInit(): void {
     let loader = new Loader({
-      apiKey: "AIzaSyCk24I_i4Ls-XSGEdX3XD-ws3s9xOvpTxE",
-      libraries: ['places']
-    })
+      apiKey: environment.GOOGLE_MAPS_API_KEY,
+      libraries: ['places'],
+    });
 
     loader.load().then(() => {
-      this.map = new google.maps.Map(document.getElementById("map"), {
+      this.map = new google.maps.Map(document.getElementById('map'), {
         center: this.moveoAddress,
         zoom: 15,
-        mapId: 'a088bb11f10500af'
+        mapId: 'a088bb11f10500af',
       });
 
       new google.maps.Marker({
         map: this.map,
         position: this.moveoAddress,
-        title: 'Moveo-alpha'
+        title: 'Moveo-alpha',
       });
 
-      this.autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocomplete") as HTMLInputElement, {
-        types: ["establishment"],
-        componentRestrictions: {'country': ['IL']},
-        fields: ['place_id', 'geometry', 'name']
-      });
+      this.autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('autocomplete') as HTMLInputElement,
+        {
+          types: ['establishment'],
+          componentRestrictions: { country: ['IL'] },
+          fields: ['place_id', 'geometry', 'name'],
+        }
+      );
 
       this.directionsService = new google.maps.DirectionsService();
       this.directionsRenderer = new google.maps.DirectionsRenderer();
 
-      this.autocomplete.addListener('place_changed', () => this.onPlaceChanged());
+      this.autocomplete.addListener('place_changed', () =>
+        this.onPlaceChanged()
+      );
       this.directionsRenderer.setMap(this.map);
-    })
+    });
   }
 
   onPlaceChanged() {
-    var place = this.autocomplete.getPlace();
-    console.log(place)
-
-    if(![place.geometry]) {
-      document.getElementById("autocomplete").ariaPlaceholder = 'Enter a place';
+    const place = this.autocomplete.getPlace();
+    if (![place.geometry]) {
+      document.getElementById('autocomplete').ariaPlaceholder = 'Enter a place';
     } else {
       new google.maps.Marker({
         map: this.map,
         position: place.geometry.location,
-        title: place.name
+        title: place.name,
       });
     }
   }
 
   calcRoute() {
-    var selectedMode = this.selectedMode;
-    // const start = new google.maps.LatLng(32.146908, 34.837891);
-    const start = { lat:32.146908, lng: 34.837891}
+    const selectedMode = this.selectedMode;
+    const start = { lat: 32.146908, lng: 34.837891 };
     const request = {
       origin: start,
       destination: this.moveoAddress,
@@ -79,5 +80,4 @@ export class MyMapComponent implements OnInit {
       }
     });
   }
-
 }
