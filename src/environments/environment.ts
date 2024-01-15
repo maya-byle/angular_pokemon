@@ -3,5 +3,5 @@ export const environment: {
   GOOGLE_MAPS_API_KEY: string;
 } = {
   production: false,
-  GOOGLE_MAPS_API_KEY: 'your_api_key_here',
+  GOOGLE_MAPS_API_KEY: 'AIzaSyCk24I_i4Ls-XSGEdX3XD-ws3s9xOvpTxE',
 };
