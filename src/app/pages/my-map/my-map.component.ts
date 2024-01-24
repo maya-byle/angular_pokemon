@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 })
 export class MyMapComponent implements OnInit {
   moveoAddress: { lat: number; lng: number } = { lat: 32.064, lng: 34.773 };
-  selectedMode: string = 'DRIVING';
+  selectedMode: string = 'none';
 
   map: google.maps.Map;
   autocomplete: google.maps.places.Autocomplete;
@@ -69,14 +69,26 @@ export class MyMapComponent implements OnInit {
   calcRoute() {
     const selectedMode = this.selectedMode;
     const start = { lat: 32.146908, lng: 34.837891 };
+
+    if (selectedMode === 'CLEAR') {
+      this.selectedMode = 'none';
+      this.directionsRenderer.setMap(null);
+      return;
+    }
+
+    const chosenMode = google.maps.TravelMode[selectedMode];
     const request = {
       origin: start,
       destination: this.moveoAddress,
-      travelMode: google.maps.TravelMode[selectedMode],
+      travelMode: chosenMode,
     };
+
     this.directionsService.route(request, (result, status) => {
       if (status == 'OK') {
         this.directionsRenderer.setDirections(result);
+        this.directionsRenderer.setMap(this.map);
+      } else {
+        console.error('Directions request failed with status:', status);
       }
     });
   }
